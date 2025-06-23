@@ -1,0 +1,52 @@
+#!/usr/bin/env bash
+
+# Check for bluetoothctl
+command -v bluetoothctl >/dev/null 2>&1 || {
+  notify-send "Bluetooth" "bluetoothctl not found"
+  exit 1
+}
+
+# Check if Bluetooth adapter exists
+if ! bluetoothctl show | grep -q "Powered:"; then
+  notify-send "Bluetooth" "No Bluetooth adapter found"
+  exit 1
+fi
+
+# Get Bluetooth status
+bt_status=$(bluetoothctl show | grep "Powered:" | awk '{print $2}')
+
+if [[ "$bt_status" == "yes" ]]; then
+  toggle="󰂜  Turn Bluetooth Off"
+else
+  toggle="󰂚  Turn Bluetooth On"
+fi
+
+# Get list of trusted devices
+device_list=$(bluetoothctl devices | sed 's/Device //g' | while read -r mac name; do
+  info=$(bluetoothctl info "$mac")
+  if echo "$info" | grep -q "Trusted: yes"; then
+    if echo "$info" | grep -q "Connected: yes"; then
+      echo "󰂱  $name [$mac] (disconnect)"
+    else
+      echo "󰂯  $name [$mac] (connect)"
+    fi
+  fi
+done)
+
+# Combine toggle and devices into one list
+menu=$(echo -e "$toggle\n$device_list" | wofi --show dmenu -i -p "Bluetooth Devices:")
+
+# Handle empty selection
+[ -z "$menu" ] && exit
+
+mac=$(echo "$menu" | grep -oE '([A-Fa-f0-9]{2}:){5}[A-Fa-f0-9]{2}')
+
+if [[ "$menu" == "󰂚  Turn Bluetooth On" ]]; then
+  bluetoothctl power on && notify-send "Bluetooth" "Powered On"
+elif [[ "$menu" == "󰂜  Turn Bluetooth Off" ]]; then
+  bluetoothctl power off && notify-send "Bluetooth" "Powered Off"
+elif [[ "$menu" == *"(connect)"* ]]; then
+  bluetoothctl connect "$mac" && notify-send "Bluetooth" "Connected to $mac"
+elif [[ "$menu" == *"(disconnect)"* ]]; then
+  bluetoothctl disconnect "$mac" && notify-send "Bluetooth" "Disconnected from $mac"
+fi
