@@ -1,0 +1,50 @@
+window {
+margin: 0px;
+border: 2px solid #4E5180;
+background-color: #222436;
+}
+
+#input {
+margin: 5px;
+border: none;
+color: #d8dee9;
+background-color: #2A2C40;
+}
+
+
+#inner-box {
+margin: 5px;
+border: none;
+background-color: #222436;
+}
+
+#outer-box {
+margin: 5px;
+border: none;
+background-color: #222436;
+}
+
+#scroll {
+margin: 0px;
+border: none;
+}
+
+#text {
+margin: 5px;
+border: none;
+color: #d8dee9;
+}
+
+#entry:selected {
+border: none;
+background-color: #2A2C40;
+outline: none;
+box-shadow: none;
+}
+
+#input:focus {
+    outline: none;
+    border: none;
+    box-shadow: none;
+}
+

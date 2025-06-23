@@ -1,0 +1,66 @@
+{
+    "custom/arch": {
+        "format": "󰣇",
+        "tooltip": false,  // Disabled
+        "on-click": "xdg-open https://archlinux.org"  // Optional: Add click action
+    },
+    "hyprland/workspaces": {
+        "disable-scroll": true,
+        "all-outputs": true,
+        "warp-on-scroll": false,
+        "format": "{name}",
+        "tooltip": false,  // Disabled
+        "format-icons": {
+            "urgent": "",
+            "active": "",
+            "default": ""
+        }
+    },
+    "pulseaudio": {
+        "format": "{icon}    {volume}%",
+        "format-bluetooth": "    {volume}%",
+        "format-bluetooth-muted": " {icon}   {format_source}",
+        "format-muted": "   {format_source}",
+        "format-source": " {volume}%",
+        "format-source-muted": "",
+        "tooltip": false,  // Disabled
+        "format-icons": {
+            "headphone": "",
+            "hands-free": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", "", ""]
+        },
+        "on-click": "pavucontrol"
+    },
+    "network": {
+        "format-wifi": "    {essid}",
+        "format-disconnected": "Disconnected ⚠",
+        "tooltip": false,  // Disabled
+        "on-click": ""
+    },
+    "battery": {
+        "states": {
+            "warning": 20,
+            "critical": 15
+        },
+        "format": "{icon}  {capacity} %",
+        "format-full": "{icon}  {capacity} %",
+        "format-charging": "  {capacity} %",
+        "format-plugged": "  {capacity} %",
+        "format-alt": "{time}  {icon}",
+        "tooltip": true,  // Explicitly enabled (default)
+        "tooltip-format": "Battery: {capacity}% ({time})",  // Optional: Customize tooltip
+        "format-icons": ["󰁺", "󰁼", "󰁾", "󰂀", "󰁹"]
+    },
+    "battery#bat2": {
+        "bat": "BAT2",
+        "tooltip": true  // Enable for secondary battery if needed
+    },
+    "clock": {
+        "format": "󰥔   {:%H:%M | %e %B}",
+        "tooltip": false  // Disabled
+    }
+}

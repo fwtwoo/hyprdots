@@ -1,0 +1,14 @@
+# ~/.config/mako/config
+font=JetBrains Mono 10
+width=300
+padding=12
+margin=10
+border-size=2
+border-radius=5
+background-color=#222436
+text-color=#CDD6F4
+border-color=#4E5180
+default-timeout=5000
+
+# Enable actions (click support)
+on-notify=exec dunstctl history-pop
