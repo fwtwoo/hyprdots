@@ -66,3 +66,22 @@ color: #ffffff;
     color: #ffffff;
     background-color: #ffffff; 
 }
+
+#workspaces button:hover,
+#clock:hover,
+#battery:hover,
+#backlight:hover,
+#network:hover,
+#pulseaudio:hover,
+#wireplumber:hover,
+#custom-media:hover,
+#tray:hover,
+#mode:hover,
+#scratchpad:hover,
+#power-profiles-daemon:hover,
+#mpd:hover {
+    background: transparent;
+    color: inherit;
+    box-shadow: none;
+    text-decoration: none;
+}
