@@ -42,9 +42,9 @@ menu=$(echo -e "$toggle\n$device_list" | wofi --show dmenu -i -p "Bluetooth Devi
 mac=$(echo "$menu" | grep -oE '([A-Fa-f0-9]{2}:){5}[A-Fa-f0-9]{2}')
 
 if [[ "$menu" == "󰂚  Turn Bluetooth On" ]]; then
-  bluetoothctl power on && notify-send "Bluetooth" "Powered On"
+  bluetooth on && notify-send "Bluetooth" "Powered On"
 elif [[ "$menu" == "󰂜  Turn Bluetooth Off" ]]; then
-  bluetoothctl power off && notify-send "Bluetooth" "Powered Off"
+  bluetooth off && notify-send "Bluetooth" "Powered Off"
 elif [[ "$menu" == *"(connect)"* ]]; then
   bluetoothctl connect "$mac" && notify-send "Bluetooth" "Connected to $mac"
 elif [[ "$menu" == *"(disconnect)"* ]]; then

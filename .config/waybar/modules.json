@@ -18,9 +18,9 @@
     },
     "pulseaudio": {
         "format": "{icon}    {volume}%",
-        "format-bluetooth": "    {volume}%",
-        "format-bluetooth-muted": " {icon}   {format_source}",
-        "format-muted": "   {format_source}",
+        "format-bluetooth": "  {volume}%",
+        "format-bluetooth-muted": "    {volume}%",
+        "format-muted": "    {volume}%",
         "format-source": " {volume}%",
         "format-source-muted": "",
         "tooltip": false,  // Disabled
@@ -39,17 +39,16 @@
         "format-wifi": "    {essid}",
         "format-disconnected": "Disconnected ⚠",
         "tooltip": false,  // Disabled
-        "on-click": ""
     },
     "battery": {
         "states": {
             "warning": 20,
             "critical": 15
         },
-        "format": "{icon}  {capacity} %",
-        "format-full": "{icon}  {capacity} %",
-        "format-charging": "  {capacity} %",
-        "format-plugged": "  {capacity} %",
+        "format": "{icon}  {capacity}%",
+        "format-full": "{icon}  {capacity}%",
+        "format-charging": "  {capacity}%",
+        "format-plugged": "  {capacity}%",
         "format-alt": "{time}  {icon}",
         "tooltip": true,  // Explicitly enabled (default)
         "tooltip-format": "Battery: {capacity}% ({time})",  // Optional: Customize tooltip
