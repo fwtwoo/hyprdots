@@ -50,13 +50,13 @@
         "format-charging": "  {capacity}%",
         "format-plugged": "  {capacity}%",
         "format-alt": "{time}  {icon}",
-        "tooltip": true,  // Explicitly enabled (default)
+        "tooltip": false,  // Explicitly enabled (default)
         "tooltip-format": "Battery: {capacity}% ({time})",  // Optional: Customize tooltip
         "format-icons": ["󰁺", "󰁼", "󰁾", "󰂀", "󰁹"]
     },
     "battery#bat2": {
         "bat": "BAT2",
-        "tooltip": true  // Enable for secondary battery if needed
+        "tooltip": false // Enable for secondary battery if needed
     },
     "clock": {
         "format": "󰥔   {:%H:%M | %e %B}",

@@ -14,19 +14,29 @@ window#waybar {
     transition: background-color .5s;
 }
 
+/* Rounded blob backgrounds for each module group */
 .modules-left,
 .modules-center,
-.modules-right
-{
-    margin: 5px 10px;
-    padding: 0 5px;
+.modules-right {
+    margin: 10px 15px;
+    padding: 4px 10px;
     border-radius: 15px;
+    background-color: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
+
 .modules-left {
-    padding: 0;
+    padding: 4px 10px;
 }
+
 .modules-center {
-    padding: 0 10px;
+    padding: 4px 10px;
+    /* Smooth animation when workspaces change */
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.modules-right {
+    padding: 4px 10px;
 }
 
 #clock,
@@ -41,33 +51,45 @@ window#waybar {
 #scratchpad,
 #power-profiles-daemon,
 #mpd {
-    padding: 0 10px;
-    border-radius: 15px;
+    padding: 0 5px;
+    border-radius: 0; /* Remove individual border radius since we have blob backgrounds */
+    background: transparent;
+}
+
+#workspaces {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 #workspaces button {
-  background: transparent;
-  font-family:
-    SpaceMono Nerd Font,
-    feather;
-  font-weight: 600;
-  font-size: 13pt;
-  color: #b9c2ea;
-  border:none;
-  border-radius: 15px;
+    background: transparent;
+    font-family:
+        SpaceMono Nerd Font,
+        feather;
+    font-weight: 600;
+    font-size: 13pt;
+    color: #b9c2ea;
+    border: none;
+    border-radius: 12px;
+    padding: 1px 8px;
+    margin: 0 1px;
+    transition: all 0.2s ease;
 }
 
 #workspaces button.active {
-color: #ffffff;
+    color: #ffffff;
 }
-
 
 #workspaces button.inactive {
-    color: #ffffff;
-    background-color: #ffffff; 
+    color: #b9c2ea;
 }
 
-#workspaces button:hover,
+#workspaces button:hover {
+    background: transparent;
+    box-shadow: none;
+    color: inherit;
+    border: none;
+}
+
 #clock:hover,
 #battery:hover,
 #backlight:hover,
