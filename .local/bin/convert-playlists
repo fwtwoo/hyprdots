@@ -1,0 +1,28 @@
+#!/usr/bin/env python3
+import os
+from pathlib import Path
+import urllib.parse
+
+# Paths
+PLAYLISTS_DIR = Path("/home/dread/media/music/playlists")
+MUSIC_DIR = Path("/home/dread/media/music")
+
+for playlist_file in PLAYLISTS_DIR.glob("*.m3u"):
+    new_lines = []
+    with open(playlist_file, "r", encoding="utf-8") as f:
+        for line in f:
+            line = line.strip()
+            if line.startswith("file://"):
+                # Decode %20 and other URI encodings
+                decoded = urllib.parse.unquote(line.replace("file://", ""))
+                # Convert absolute path to relative (relative to playlists dir)
+                relpath = os.path.relpath(decoded, start=PLAYLISTS_DIR)
+                new_lines.append(relpath)
+            else:
+                new_lines.append(line)
+
+    # Overwrite with corrected format
+    with open(playlist_file, "w", encoding="utf-8") as f:
+        f.write("\n".join(new_lines))
+
+    print(f"Converted {playlist_file.name}")

@@ -1,0 +1,34 @@
+#!/usr/bin/env python3
+import os
+from pathlib import Path
+
+# 🔧 Change this path to your actual playlists directory
+PLAYLISTS_DIR = Path.home() / "media" / "music" / "playlists"
+
+def generate_m3u_for_folder(folder: Path):
+    """Generate a .m3u playlist for a folder of mp3 files."""
+    mp3s = sorted([f for f in folder.iterdir() if f.is_file() and f.suffix.lower() == ".mp3"])
+    if not mp3s:
+        return None
+
+    rel_paths = [f"../playlists/{folder.name}/{mp3.name}" for mp3 in mp3s]
+
+    m3u_path = PLAYLISTS_DIR / f"{folder.name}.m3u"
+    with m3u_path.open("w", encoding="utf-8") as f:
+        f.write("#EXTM3U\n")
+        for rel in rel_paths:
+            f.write(f"{rel}\n")
+
+    return m3u_path
+
+def main():
+    for item in PLAYLISTS_DIR.iterdir():
+        if item.is_dir():
+            result = generate_m3u_for_folder(item)
+            if result:
+                print(f"✅ Created {result.name}")
+            else:
+                print(f"⚠️  No mp3 files found in {item.name}, skipped.")
+
+if __name__ == "__main__":
+    main()
